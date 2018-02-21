@@ -103,9 +103,20 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/home/octal/anaconda3/bin:$PATH"
 
-export GT="/home/octal/Dropbox/gatech/"
 export DROP="/home/octal/Dropbox"
 export CONF="/home/octal/.files"
+
+export GT="$DROP/gatech/"
+export SPR18="$GT"
+
+
+alias 3078="$SPR18/3078"
+alias 3127="$SPR18/3127"
+alias 3251="$SPR18/3251"
+alias 3312="$SPR18/3312"
+alias 3630="$SPR18/3630"
+alias 4057="$SPR18/4057"
+alias 4365="$SPR18/4365"
 
 alias ce="setxkbmap -option caps:escape"
 alias gt="cd $GT"
