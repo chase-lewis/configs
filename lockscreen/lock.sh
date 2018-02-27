@@ -7,6 +7,7 @@ T='#bbbfcaff'  # text
 W='#c35c66ee'  # typing
 V='#5294e2ee'  # verifying
 
+# Lock screen
 /home/octal/.files/lockscreen/i3lock \
 --insidevercolor=$C   \
 --ringvercolor=$V     \
@@ -34,6 +35,8 @@ V='#5294e2ee'  # verifying
 --timestr="%H:%M:%S"  \
 --datestr="%m-%d-%Y" \
 --keylayout 2         \
+&& xset dpms force off
+
 
 # --veriftext="Drinking verification can..."
 # --wrongtext="Nope!"
