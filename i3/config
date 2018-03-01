@@ -157,9 +157,30 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        tray_output primary
         position top
         status_command i3status
+        colors {
+                background #222632
+                statusline #F5F6F7
+                separator #5294E2
+
+                focused_workspace #5294E2 #5294E2 #F5F6F7
+                active_workspace #7c818c #7c818c #f5f6f7
+                inactive_workspace #3b414f #3b414f #8c8c8c
+                urgent_workspace #cc575d #cc575d #f5f6f7
+        }
 }
+
+# Border colors
+client.focused          #222632 #5294e2 #f5f6f7 #2e9ef4
+client.focused_inactive #222632 #7c818c #f5f6f7 #484e50
+client.unfocused        #222632 #3b414f #8c8c8c #292d2e
+client.urgent           #222632 #cc575d #f5f6f7 #900000
+
+# Scratchpad setup
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show 
 
 # Shortcuts for moving windows between monitors
 bindsym $mod+Shift+Control+$left move workspace to output left
@@ -170,11 +191,24 @@ bindsym $mod+Shift+Control+Right move workspace to output right
 # Setup networking
 exec --no-startup-id nm-applet
 
+# Setup audio
+exec --no-startup-id start-pulseaudio-x11
+
 # Setup power manager (timeout, lock, etc)
 exec --no-startup-id xfce4-power-manager
 
+# Setup dropbox
+exec --no-startup-id dropbox start
+
 # Enable touchpad tap
-exec xinput set-prop 12 277 1
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+
+# Map capslock to escape
+exec_always setxkbmap -option caps:escape 
+
+# Remove middle click on touchpad
+exec_always xinput -set-button-map "SynPS/2 Synaptics TouchPad" 1 1 3
+
 
 # Control volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
@@ -198,7 +232,7 @@ new_window 1pixel
 
 # Monitor config shortcuts
 bindsym Mod1+Control+Shift+p exec xrandr --output eDP-1 --mode 1366x768 --pos 1920x312 --output HDMI-1 --mode 1920x1080 --pos 0x0 --primary
-bindsym Mod4+Control+Shift+p exec xrandr --output HDMI-1 --off
+bindsym Mod4+Control+Shift+p exec xrandr --output HDMI-1 --off --output eDP-1 --primary
 
 # Locking shortcut
-bindsym Mod4+Control+l exec xflock4
+bindsym Mod1+Shift+l exec /home/octal/.files/lockscreen/blank-lock.sh

@@ -35,7 +35,6 @@ V='#5294e2ee'  # verifying
 --timestr="%H:%M:%S"  \
 --datestr="%m-%d-%Y" \
 --keylayout 2         \
-&& xset dpms force off
 
 
 # --veriftext="Drinking verification can..."
