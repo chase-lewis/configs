@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 export PATH="/home/octal/anaconda3/bin:$PATH"
+export PATH=${PATH}:~/android-sdk-linux/platform-tools
 
 export DROP="/home/octal/Dropbox"
 export CONF="/home/octal/.files"
@@ -109,6 +110,9 @@ export CONF="/home/octal/.files"
 export GT="$DROP/gatech/"
 export SPR18="$GT"
 
+
+# For opening in terminal and quiting
+alias qt="disown && exit"
 
 alias 3078="$SPR18/3078"
 alias 3127="$SPR18/3127"
