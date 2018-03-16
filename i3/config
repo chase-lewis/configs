@@ -95,7 +95,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+z focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -154,6 +154,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+mode "move" {
+        # Move window with vim bindings
+        bindsym $left move left 20px
+        bindsym $right move right 20px
+        bindsym $up move up 20px
+        bindsym $down move down 20px
+
+        # Move window with arrow keys
+        bindsym Left move left 20px
+        bindsym Right move right 20px
+        bindsym Up move up 20px
+        bindsym Down move down 20px
+
+        # return to default: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode "move"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -188,6 +208,9 @@ bindsym $mod+Shift+Control+$right move workspace to output right
 bindsym $mod+Shift+Control+Left move workspace to output left
 bindsym $mod+Shift+Control+Right move workspace to output right
 
+# Shortcut for alternating workspaces
+bindsym $mod+Tab workspace back_and_forth
+
 # Setup networking
 exec --no-startup-id nm-applet
 
@@ -218,11 +241,11 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 # Spotify media control
 bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrevious exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
 
 # Set wallpaper
-exec feh --bg-scale /home/octal/Pictures/nasa/nasa.jpg
+exec feh --bg-fill /home/octal/Pictures/nasa/nasa.jpg
 
 # Xfce4 dropdown terminal
 bindsym Mod1+Return exec xfce4-terminal --drop-down
@@ -231,7 +254,7 @@ bindsym Mod1+Return exec xfce4-terminal --drop-down
 new_window 1pixel
 
 # Monitor config shortcuts
-bindsym Mod1+Control+Shift+p exec xrandr --output eDP-1 --mode 1366x768 --pos 1920x312 --output HDMI-1 --mode 1920x1080 --pos 0x0 --primary
+bindsym Mod1+Control+Shift+p exec xrandr --output eDP-1 --mode 1366x768 --pos 1920x312 --output HDMI-1 --mode 1920x1080 --pos 0x0 --primary && feh --bg-fill /home/octal/Pictures/nasa/nasa.jpg && setxkbmap -option caps:escape; workspace --no-auto-back-and-forth 1; move workspace to output HDMI-1; workspace --no-auto-back-and-forth 3; move workspace to output HDMI-1; workspace --no-auto-back-and-forth 5; move workspace to output HDMI-1; workspace --no-auto-back-and-forth 7; move workspace to output HDMI-1; workspace --no-auto-back-and-forth 9; move workspace to output HDMI-1; workspace back_and_forth
 bindsym Mod4+Control+Shift+p exec xrandr --output HDMI-1 --off --output eDP-1 --primary
 
 # Locking shortcut
